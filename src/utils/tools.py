@@ -41,7 +41,7 @@ def mask_maker(last_operation):
                     key_kard_to += letter
                 else:
                     key_numb_to += letter
-            key_numb_to = key_numb_to[:2] + " ** " * 3 + key_numb_to[-4:]
+            key_numb_to = " ** " + key_numb_to[-4:]
         mask_operation.append(f"Дата - {date}, тип операции - {description}, "
                               f"Откуда {key_kard_from} {key_numb_from} "
                               f"Куда {key_kard_to} {key_numb_to} "

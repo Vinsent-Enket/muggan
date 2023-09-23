@@ -37,5 +37,5 @@ for operation in operations:
 result = mask_maker(last_operation)
 
 for data_string in result:
-    print(data_string, "\n")
+    print(data_string, "\n--------\n")
 
