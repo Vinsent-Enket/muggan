@@ -25,5 +25,5 @@ def test_time_converter():
 
 def test_mask_maker():
     assert mask_maker([]) == []
-    assert mask_maker(test_dict) == ['Дата - 2019-12-08 22:46:21, тип операции - Открытие вклада, Откуда   Куда Счет  90 **  **  ** 5907 ']
+    assert mask_maker(test_dict) == ['Дата - 2019-12-08 22:46:21, тип операции - Открытие вклада, Откуда   Куда Счет  90 **  **  ** 5907 сумма -  41096.24 USD']
 

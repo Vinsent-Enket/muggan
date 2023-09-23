@@ -3,7 +3,7 @@ import datetime
 
 def time_converter(datetime_string):
     """
-    используя библиотеку дататайм конвертируем строковое значение в тип время и убираем микросекунды
+    используя библиотеку дататайм конвертируем строковое значение в тип время и убираем микросекунд
     :param datetime_string:
     :return:
     """
@@ -14,6 +14,7 @@ def time_converter(datetime_string):
 def mask_maker(last_operation):
     """
     получаем на вход список из 5ти последних операций и преобразуем их
+    Можно было бы не делать единую строку, а разбить их по отдельности, тогда и тест было бы сделать на 100 проц
     :param last_operation:
     :return:
     """
@@ -24,7 +25,9 @@ def mask_maker(last_operation):
         key_numb_from = ""
         key_kard_to = ""
         key_numb_to = ""
+        description = choice_operation['description']
         date = time_converter(choice_operation['date'])
+        summ = choice_operation["operationAmount"]["amount"] + " " + choice_operation["operationAmount"]["currency"]["name"]
         if 'from' in choice_operation:
             for letter in choice_operation['from']:
                 if not letter.isdigit():
@@ -39,24 +42,10 @@ def mask_maker(last_operation):
                 else:
                     key_numb_to += letter
             key_numb_to = key_numb_to[:2] + " ** " * 3 + key_numb_to[-4:]
-        mask_operation.append(f"Дата - {date}, тип операции - {choice_operation['description']}, "
+        mask_operation.append(f"Дата - {date}, тип операции - {description}, "
                               f"Откуда {key_kard_from} {key_numb_from} "
-                              f"Куда {key_kard_to} {key_numb_to} ")
+                              f"Куда {key_kard_to} {key_numb_to} "
+                              f"сумма -  {summ}")
 
     return mask_operation
-test_dict =[{
-    "id": 863064926,
-    "state": "EXECUTED",
-    "date": "2019-12-08T22:46:21.935582",
-    "operationAmount": {
-      "amount": "41096.24",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    },
-    "description": "Открытие вклада",
-    "to": "Счет 90424923579946435907"
-  }
-]
-print(mask_maker(test_dict))
+
